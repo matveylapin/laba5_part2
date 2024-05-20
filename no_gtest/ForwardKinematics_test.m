@@ -124,24 +124,24 @@ classdef ForwardKinematics_test < matlab.unittest.TestCase
         end
 
         function rot_to_frame_Test(testCase)
-            angles = (rand(1, 6)-0.5)*pi;
-            testCase.assertEqual(testCase.fk.rot_to_frame(0, angles), eye(3));
-            testCase.assertEqual(testCase.fk.rot_to_frame(1, angles), testCase.rot_1_fn(angles(1)));
-            testCase.assertEqual(testCase.fk.rot_to_frame(2, angles), testCase.rot_2_fn(angles(1), angles(2)));
-            testCase.assertEqual(testCase.fk.rot_to_frame(3, angles), testCase.rot_3_fn(angles(1), angles(2), angles(3)));
-            testCase.assertEqual(testCase.fk.rot_to_frame(4, angles), testCase.rot_4_fn(angles(1), angles(2), angles(3), angles(4)));
-            testCase.assertEqual(testCase.fk.rot_to_frame(5, angles), testCase.rot_5_fn(angles(1), angles(2), angles(3), angles(4), angles(5)));
-            testCase.assertEqual(testCase.fk.rot_to_frame(6, angles), testCase.rot_6_fn(angles(1), angles(2), angles(3), angles(4), angles(5), angles(6)));
+            angles = (rand(1, 6)-0.5)*180;
+            testCase.verifyEqual(testCase.fk.rot_to_frame(0, deg2rad(angles)), eye(3), "AbsTol", 1e-6);
+            testCase.verifyEqual(testCase.fk.rot_to_frame(1, deg2rad(angles)), testCase.rot_1_fn(angles(1)), "AbsTol", 1e-6);
+            testCase.verifyEqual(testCase.fk.rot_to_frame(2, deg2rad(angles)), testCase.rot_2_fn(angles(1), angles(2)), "AbsTol", 1e-6);
+            testCase.verifyEqual(testCase.fk.rot_to_frame(3, deg2rad(angles)), testCase.rot_3_fn(angles(1), angles(2), angles(3)), "AbsTol", 1e-6);
+            testCase.verifyEqual(testCase.fk.rot_to_frame(4, deg2rad(angles)), testCase.rot_4_fn(angles(1), angles(2), angles(3), angles(4)), "AbsTol", 1e-6);
+            testCase.verifyEqual(testCase.fk.rot_to_frame(5, deg2rad(angles)), testCase.rot_5_fn(angles(1), angles(2), angles(3), angles(4), angles(5)), "AbsTol", 1e-6);
+            testCase.verifyEqual(testCase.fk.rot_to_frame(6, deg2rad(angles)), testCase.rot_6_fn(angles(1), angles(2), angles(3), angles(4), angles(5), angles(6)), "AbsTol", 1e-6);
         end
         
         function link_shift_Test(testCase)
-            angles = (rand(1, 6)-0.5)*pi;
-            testCase.assertEqual(testCase.fk.one_link_shift(1, angles(1)), testCase.shift_01_fn(angles(1)));
-            testCase.assertEqual(testCase.fk.one_link_shift(2, angles(2)), testCase.shift_12_fn(angles(2)));
-            testCase.assertEqual(testCase.fk.one_link_shift(3, angles(3)), testCase.shift_23_fn(angles(3)));
-            testCase.assertEqual(testCase.fk.one_link_shift(4, angles(4)), testCase.shift_34_fn(angles(4)));
-            testCase.assertEqual(testCase.fk.one_link_shift(5, angles(5)), testCase.shift_45_fn(angles(5)));
-            testCase.assertEqual(testCase.fk.one_link_shift(6, angles(6)), testCase.shift_56_fn(angles(6)));
+            angles = (rand(1, 6)-0.5);
+            testCase.verifyEqual(testCase.fk.one_link_shift(1, angles(1)*pi), testCase.shift_01_fn(angles(1)*180), "AbsTol", 1e-6);
+            testCase.verifyEqual(testCase.fk.one_link_shift(2, angles(2)*pi), testCase.shift_12_fn(angles(2)*180), "AbsTol", 1e-6);
+            testCase.verifyEqual(testCase.fk.one_link_shift(3, angles(3)*pi), testCase.shift_23_fn(angles(3)*180), "AbsTol", 1e-6);
+            testCase.verifyEqual(testCase.fk.one_link_shift(4, angles(4)*pi), testCase.shift_34_fn(angles(4)*180), "AbsTol", 1e-6);
+            testCase.verifyEqual(testCase.fk.one_link_shift(5, angles(5)*pi), testCase.shift_45_fn(angles(5)*180), "AbsTol", 1e-6);
+            testCase.verifyEqual(testCase.fk.one_link_shift(6, angles(6)*pi), testCase.shift_56_fn(angles(6)*180), "AbsTol", 1e-6);
         end
     end
     
