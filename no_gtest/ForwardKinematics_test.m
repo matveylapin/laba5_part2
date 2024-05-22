@@ -134,7 +134,7 @@ classdef ForwardKinematics_test < matlab.unittest.TestCase
             testCase.verifyEqual(testCase.fk.rot_to_frame(6, deg2rad(angles)), testCase.rot_6_fn(angles(1), angles(2), angles(3), angles(4), angles(5), angles(6)), "AbsTol", 1e-6);
         end
         
-        function link_shift_Test(testCase)
+        function one_link_shift_Test(testCase)
             angles = (rand(1, 6)-0.5);
             testCase.verifyEqual(testCase.fk.one_link_shift(1, angles(1)*pi), testCase.shift_01_fn(angles(1)*180), "AbsTol", 1e-6);
             testCase.verifyEqual(testCase.fk.one_link_shift(2, angles(2)*pi), testCase.shift_12_fn(angles(2)*180), "AbsTol", 1e-6);
