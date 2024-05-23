@@ -10,10 +10,6 @@ classdef ForwardKinematics
         Rz__ = @(t) [cos(t) -sin(t) 0; sin(t) cos(t) 0; 0 0 1];
 
     end
-
-    properties
-        state_vector;
-    end
     
     methods
         function obj = ForwardKinematics(links_vectors, joins_rots, joins_count)
@@ -62,16 +58,16 @@ classdef ForwardKinematics
             shift = outputArg;
         end
 
+        function shift = shift_to_frame(obj, child_frame, angles)
+            shift = obj.shift_between_frames(0, child_frame, angles);
+        end
+
         function shift = zero_shift_between_frames(obj, parent_frame, child_frame)
             shift = obj.shift_between_frames(parent_frame, child_frame, zeros(1, obj.joins_count__));
         end
 
         function joints_count = get_joins_count(obj)
             joints_count = obj.joins_count__;
-        end
-
-        function obj = set.state_vector(obj, current_state)
-            obj.state_vector = current_state;
         end
     end
 end
