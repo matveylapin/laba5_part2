@@ -1,16 +1,16 @@
 %% power
 power.voltage = 24;
 %% dims
-d_a = 80e-3;    % save diameter of motor
-h_a = 27.5e-3;  % depth of motor
-d_r = 0.5;      % arm length
+dims.d_a = 80e-3;    % save diameter of motor
+dims.h_a = 27.5e-3;  % depth of motor
+dims.d_r = 0.5;      % arm length
 %% kinematics
-kinematics.l_1 = [     -d_a; 0;       0 ];
-kinematics.l_2 = [      d_r; 0;       0 ];
-kinematics.l_3 = [     -d_r; 0;       0 ];
-kinematics.l_4 = [        0; 0; d_a+h_a ];
-kinematics.l_5 = [ -d_a-h_a; 0;     d_a ];
-kinematics.l_6 = [        0; 0;       0 ];
+kinematics.l_1 = [       -dims.d_a; 0;       0 ];
+kinematics.l_2 = [        dims.d_r; 0;       0 ];
+kinematics.l_3 = [       -dims.d_r; 0;       0 ];
+kinematics.l_4 = [                  0; 0;    dims.d_a+dims.h_a ];
+kinematics.l_5 = [ -dims.d_a-dims.h_a; 0;    dims.d_a ];
+kinematics.l_6 = [                  0; 0;    0 ];
 kinematics.l_all = {kinematics.l_1 kinematics.l_2 kinematics.l_3 kinematics.l_4 kinematics.l_5 kinematics.l_6};
 
 kinematics.E_1 = roty(-90) * rotz(180);

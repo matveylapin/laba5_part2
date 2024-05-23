@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Info Type="Shutdown" Visible="0" Icon="" File="scripts/Deinitialization/unload_workspace.m" Name="unload_workspace">
+    <Extension Value="60772a8c-a4d6-4bf6-a23d-d5fa2a32bf5f" Name="ShutdownPrev"/>
+</Info>
